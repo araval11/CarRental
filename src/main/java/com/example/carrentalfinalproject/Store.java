@@ -4,24 +4,19 @@ import java.io.Serializable;
 
 public class Store implements Serializable {
     private String name;
-    private double latitude;
-    private double longitude;
+    private String address;
 
-    public Store(String name, double latitude, double longitude) {
+    public Store(String name, String address) {
         this.name = name;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.address = address;
     }
 
     public String getName() {
         return name;
     }
-
-    public double getLatitude() {
-        return latitude;
+    public String getAddress() {
+        return address;
     }
 
-    public double getLongitude() {
-        return longitude;
-    }
+
 }

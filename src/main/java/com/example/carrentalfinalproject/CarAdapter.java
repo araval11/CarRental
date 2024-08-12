@@ -178,29 +178,33 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
         bookedCarsList.add(car);
         Log.i("addBooked Clicked",bookedCarsList.toString());
 
-        // Create a new instance of the LocationFragment
-        location_fragment locationFragment = new location_fragment();
-        // Create a bundle to pass the Car object
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("carData", car);  // Use putParcelable if Car implements Parcelable
-        // Set the arguments for the fragment
-        locationFragment.setArguments(bundle);
-        // Assuming you're using a FragmentManager and a container to replace the fragment
-        ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction()
-                .replace(R.id.map, locationFragment) // Ensure this ID matches your container
-                .addToBackStack(null)
-                .commit();
+//        // Create a new instance of the LocationFragment
+//        location_fragment locationFragment = new location_fragment();
+//        // Create a bundle to pass the Car object
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("carData", car);  // Use putParcelable if Car implements Parcelable
+//        // Set the arguments for the fragment
+//        locationFragment.setArguments(bundle);
+//        // Assuming you're using a FragmentManager and a container to replace the fragment
+//        ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.map, locationFragment) // Ensure this ID matches your container
+//                .addToBackStack(null)
+//                .commit();
 
         // Save the updated list back to SharedPreferences
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        String updatedJson = gson.toJson(bookedCarsList);
-//        editor.putString("bookedCars", updatedJson);
-//        editor.apply();
-//        Log.i("addBooked Clicked",updatedJson);
-//
-//        // Notify the user and refresh the RecyclerView
-//        Toast.makeText(context, "Car booked successfully", Toast.LENGTH_SHORT).show();
-//        notifyDataSetChanged();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String updatedJson = gson.toJson(bookedCarsList);
+        editor.putString("bookedCars", updatedJson);
+        editor.apply();
+        Log.i("addBooked Clicked",updatedJson);
+
+        // Notify the user and refresh the RecyclerView
+        Toast.makeText(context, "Car booked successfully", Toast.LENGTH_SHORT).show();
+        notifyDataSetChanged();
+        Intent intent = new Intent(context, CheckoutPage.class);
+        intent.putExtra("carData", car); // Assuming selectedCar is the Car object you want to pass
+        context.startActivity(intent);
+
     }
 
 

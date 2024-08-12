@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void navigateToUserViewActivity() {
-        Intent intent = new Intent(LoginActivity.this, user_view_activity.class);
+        Intent intent = new Intent(LoginActivity.this, LocationActivity.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
